@@ -1,0 +1,891 @@
+/* Color Palette Variables */
+:root {
+    --color-primary-bg: #4A2A68; /* Deep Purple */
+    --color-white: #FFFFFF;
+    --color-gold: #D4AF37; /* Bright Gold */
+    --color-dark-text: #4A2A68; /* Dark purple for text on light BG */
+    --color-light-grey: #cccccc; /* Subtler text */
+    --color-medium-purple: #5A3A78; /* Slightly lighter purple */
+    --color-dark-purple-accent: #3A1A48; /* Even darker purple for accents */
+    --color-gold-hover: #c0a030; /* Darker gold for hover */
+    --color-light-purple-bg: #6a4a8a; /* A lighter purple for sections maybe */
+}
+
+/* Basic Reset and Body Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Lora', serif; /* Use Lora for standard text */
+    line-height: 1.6;
+    background-color: var(--color-primary-bg); /* The main background color */
+    color: var(--color-white); /* Default text color */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Container for centering content and creating side margins */
+.container {
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* --- Header Styles --- */
+.header {
+    background-color: transparent;
+    padding: 25px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
+}
+
+.logo-icon {
+    display: block;
+    width: 45px; /* Adjusted size */
+    height: auto;
+    margin-right: 10px; /* Reduced space */
+    fill: var(--color-gold); /* For SVG */
+}
+
+.logo-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em; /* Adjusted size */
+    font-weight: 700; /* Make the main part bold */
+    line-height: 1;
+    color: var(--color-gold); /* Logo name in gold */
+}
+
+.logo-md {
+    /* Removed the "MD" text as it's not in the new brand name */
+    display: none;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px; /* Space between navigation items */
+}
+
+.nav li {
+    position: relative;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--color-white);
+    font-family: 'Lora', serif;
+    font-size: 16px; /* Slightly larger */
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+.nav li.active a,
+.nav a:hover {
+     color: var(--color-gold); /* Gold on active and hover */
+}
+
+.nav li.active a::after,
+.nav a:hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-gold);
+}
+
+/* --- Hero Section Styles --- */
+.hero {
+    position: relative;
+    height: 100vh;
+    background-image: url('w.avif'); /* Replace with your actual image path */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color-white);
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+/* Overlay */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(74,42,104,0.7) 70%, rgba(74,42,104,0.95) 100%); /* Darker gradient end */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px; /* Slightly wider for the new headline */
+    padding-top: 100px; /* More space from header */
+    padding-bottom: 80px;
+}
+
+.hero-headline {
+    font-family: 'Lora', serif;
+    font-size: 4.8em; /* Adjusted size */
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-white);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3); /* Subtle text shadow */
+}
+
+.hero-description {
+    font-size: 1.5em; /* Adjusted size */
+    margin-bottom: 40px;
+    line-height: 1.6;
+    color: var(--color-white);
+    font-weight: 400;
+    opacity: 0.9; /* Slightly transparent */
+}
+
+/* Button Styles (Reused and slightly refined) */
+.btn {
+    display: inline-block;
+    background-color: var(--color-gold);
+    color: var(--color-dark-text);
+    padding: 14px 40px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 17px; /* Slightly larger */
+    font-weight: bold;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--color-gold-hover);
+    opacity: 1; /* Remove opacity change */
+}
+
+.btn-small {
+    padding: 10px 25px; /* Smaller padding for specific buttons */
+    font-size: 15px;
+}
+
+
+/* Scroll Indicator Arrow */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: var(--color-white);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* --- General Section Styles --- */
+.services-section,
+.how-it-works-section,
+.experts-section,
+.site-footer {
+    padding: 80px 0; /* Consistent vertical padding */
+    background-color: var(--color-primary-bg); /* Default background */
+    color: var(--color-white); /* Default text color */
+    position: relative; /* For potential z-index or absolute positioning */
+}
+
+/* Section Titles (H2) */
+.section-title {
+    font-family: 'Lora', serif;
+    font-size: 3em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 60px; /* Increased space below title */
+    color: var(--color-white);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2); /* Subtle text shadow */
+}
+
+/* --- Popular Services Section (Redesigned) --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly larger min width */
+    gap: 40px; /* Increased space between grid items */
+}
+
+.service-card {
+    background-color: var(--color-dark-purple-accent); /* Darker purple background */
+    padding: 35px; /* Increased padding */
+    border-radius: 10px; /* More rounded corners */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid transparent; /* Add a border for hover */
+}
+
+.service-card:hover {
+     transform: translateY(-8px); /* Lift more on hover */
+     box-shadow: 0 12px 20px rgba(0,0,0,0.4); /* More prominent shadow */
+     border-color: var(--color-gold); /* Gold border on hover */
+}
+
+.service-icon {
+    font-size: 3.5em; /* Large icon size */
+    margin-bottom: 20px;
+    line-height: 1; /* Keep line height tight */
+    color: var(--color-gold); /* Gold icons */
+    display: inline-block; /* Needed for transform */
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+     transform: rotate(10deg); /* Rotate icon on hover */
+}
+
+
+.service-card-title {
+    font-family: 'Lora', serif;
+    font-size: 1.7em; /* Larger title size */
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--color-gold);
+}
+
+.service-card-description {
+    font-family: 'Lora', serif;
+    font-size: 1.1em;
+    font-weight: 400;
+    color: var(--color-light-grey); /* Lighter text for description */
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.service-link {
+    display: inline-block;
+    color: var(--color-white); /* White link text */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.service-link:hover {
+    color: var(--color-gold); /* Gold link on hover */
+}
+
+.service-link i {
+     margin-left: 5px;
+     transition: margin-left 0.3s ease;
+}
+
+.service-link:hover i {
+    margin-left: 10px; /* Move arrow on hover */
+}
+
+
+/* --- How It Works Section (Redesigned) --- */
+.how-it-works-steps {
+    display: flex; /* Use flexbox for a horizontal flow */
+    justify-content: center;
+    gap: 50px; /* Space between steps */
+    flex-wrap: wrap; /* Allow wrapping */
+    position: relative;
+    padding: 0 40px; /* Add some horizontal padding to prevent items touching edges */
+}
+
+/* Optional: Add connecting line between steps (complex, maybe skip for simplicity first) */
+/* .how-it-works-steps::before { ... } */
+
+
+.step-card {
+    flex: 1; /* Allow items to grow */
+    min-width: 250px; /* Min width before wrapping */
+    max-width: 350px; /* Max width */
+    text-align: center; /* Center content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.step-icon {
+    width: 100px; /* Fixed size circle area */
+    height: 100px;
+    background-color: var(--color-dark-purple-accent); /* Dark background for the circle */
+    border: 3px solid var(--color-gold); /* Gold border */
+    border-radius: 50%; /* Make it a circle */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2; /* Ensure it's above any potential connecting line */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+.step-number-dancing {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5em; /* Large number */
+    font-weight: 700;
+    color: var(--color-gold);
+    line-height: 1;
+    margin-bottom: 5px; /* Space between number and optional icon */
+}
+
+.gold-icon {
+    color: var(--color-gold); /* Style for Font Awesome icons inside step-icon */
+    font-size: 1.2em;
+}
+
+.step-content {
+    text-align: center; /* Center text */
+}
+
+.step-title {
+     font-family: 'Lora', serif;
+     font-size: 1.5em;
+     font-weight: 700;
+     margin-bottom: 10px;
+     color: var(--color-white); /* White title */
+}
+
+.step-description {
+     font-family: 'Lora', serif;
+     font-size: 1em;
+     font-weight: 400;
+     color: var(--color-light-grey); /* Light grey description */
+     line-height: 1.5;
+}
+
+
+/* --- Featured Experts Section (New Page 3) --- */
+.experts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grid for expert cards */
+    gap: 40px;
+}
+
+.expert-card {
+    background-color: var(--color-dark-purple-accent);
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.expert-card:hover {
+     transform: translateY(-8px);
+     box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+     border-color: var(--color-gold);
+}
+
+.expert-header {
+    display: flex; /* Layout for icon and name/info */
+    align-items: center; /* Align vertically */
+    margin-bottom: 20px;
+}
+
+.expert-icon {
+    font-size: 3em; /* Size for expert icons */
+    margin-right: 15px;
+    line-height: 1;
+    color: var(--color-gold);
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.expert-info {
+    flex-grow: 1; /* Allow info block to take space */
+}
+
+.expert-name {
+    font-family: 'Lora', serif;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--color-white); /* White name */
+}
+
+.expert-tagline {
+    font-family: 'Lora', serif;
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--color-light-grey); /* Light grey tagline */
+    margin-bottom: 10px;
+}
+
+.expert-rating {
+    font-size: 0.9em;
+    color: var(--color-light-grey);
+    display: flex;
+    align-items: center;
+}
+
+.expert-rating .stars i {
+    color: var(--color-gold); /* Gold stars */
+    margin-right: 2px;
+}
+
+.expert-rating .rating-value {
+     font-weight: bold;
+     margin-right: 5px;
+     color: var(--color-gold); /* Gold rating number */
+}
+
+.expert-rating .reviews-count {
+    color: var(--color-light-grey); /* Light grey reviews */
+}
+
+
+.expert-details {
+    margin-bottom: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1); /* Subtle separator line */
+}
+
+.expert-details p {
+    font-size: 1em;
+    margin-bottom: 8px;
+    color: var(--color-white);
+}
+
+.expert-details strong {
+    color: var(--color-gold); /* Make labels gold */
+    font-weight: 700;
+}
+
+
+.expert-footer {
+    margin-top: auto; /* Push footer to the bottom */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1); /* Subtle separator line */
+}
+
+.expert-price {
+    font-size: 1.4em;
+    color: var(--color-gold);
+    font-weight: 400;
+}
+
+.expert-price strong {
+     font-size: 1.2em; /* Make the price itself larger */
+     font-weight: 700;
+}
+
+/* --- Footer & Signup Section (New Page 3) --- */
+.site-footer {
+    background-color: var(--color-dark-purple-accent); /* Use the darker purple for footer */
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+.footer-top {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 40px; /* Space between blocks */
+    margin-bottom: 40px;
+}
+
+.footer-cta {
+    flex: 2; /* Allow CTA block to take more space */
+    min-width: 300px;
+    max-width: 600px; /* Cap max width */
+}
+
+.footer-cta-title {
+    font-family: 'Lora', serif;
+    font-size: 2.2em; /* Smaller title than section titles */
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--color-white);
+}
+
+.footer-cta-description {
+    font-size: 1em;
+    color: var(--color-light-grey);
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.footer-signup-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* Allow form elements to wrap */
+}
+
+.footer-email-input {
+    flex-grow: 1; /* Allow input to take available space */
+    min-width: 200px; /* Ensure input has min width */
+    padding: 12px 20px;
+    border: 1px solid var(--color-gold);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    color: var(--color-white);
+    font-size: 1em;
+    font-family: 'Lora', serif;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.footer-email-input::placeholder {
+    color: var(--color-light-grey);
+    opacity: 0.8;
+}
+
+.footer-email-input:focus {
+    border-color: var(--color-gold-hover);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.5); /* Gold glow on focus */
+}
+
+.footer-signup-form .btn {
+    /* Reuse the base btn style */
+    padding: 12px 30px; /* Adjust padding for button in form */
+    font-size: 1em;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+
+.footer-nav-links {
+    flex: 1; /* Allow links block to take remaining space */
+    display: flex;
+    gap: 40px; /* Space between link columns */
+    flex-wrap: wrap; /* Allow link columns to wrap */
+    min-width: 200px;
+}
+
+.footer-links-group {
+    flex: 1; /* Allow groups to grow */
+    min-width: 120px; /* Minimum width for a link column */
+}
+
+.footer-links-title {
+    font-family: 'Lora', serif;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--color-gold); /* Gold title for link groups */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-links-group ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links-group li {
+    margin-bottom: 10px;
+}
+
+.footer-links-group a {
+    text-decoration: none;
+    color: var(--color-white); /* White links */
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.footer-links-group a:hover {
+    color: var(--color-gold); /* Gold on hover */
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.1); /* Separator line */
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.footer-copyright {
+    font-size: 0.9em;
+    color: var(--color-light-grey);
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+    .section-title {
+        font-size: 2.5em;
+    }
+     .hero-headline {
+        font-size: 4em;
+     }
+    .how-it-works-steps {
+        gap: 30px;
+        padding: 0 20px;
+    }
+     .footer-top {
+        flex-direction: column; /* Stack footer top sections */
+        align-items: center;
+        text-align: center; /* Center text in stacked blocks */
+     }
+     .footer-cta, .footer-nav-links {
+         max-width: 80%; /* Limit width */
+     }
+     .footer-signup-form {
+         justify-content: center; /* Center form items */
+     }
+}
+
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav ul {
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-headline {
+        font-size: 3em;
+    }
+
+    .hero-description {
+         font-size: 1.2em;
+    }
+
+    .section-title {
+         font-size: 2em;
+         margin-bottom: 40px;
+    }
+
+    .services-grid, .experts-grid {
+        grid-template-columns: 1fr; /* Stack items vertically */
+        gap: 30px;
+    }
+
+    .how-it-works-steps {
+        flex-direction: column; /* Stack steps vertically */
+        align-items: center;
+        gap: 40px;
+        padding: 0; /* Remove horizontal padding */
+    }
+
+    .step-card {
+         max-width: 350px; /* Keep max width */
+         min-width: unset; /* Remove min-width */
+         width: 90%; /* Use percentage width */
+         flex-direction: row; /* Put icon and content side-by-side */
+         align-items: flex-start; /* Align top */
+         text-align: left; /* Left align text */
+    }
+
+     .step-icon {
+         width: 80px; /* Smaller icon circle */
+         height: 80px;
+         margin-right: 20px;
+         margin-bottom: 0; /* Remove bottom margin */
+     }
+
+     .step-number-dancing {
+         font-size: 3em; /* Adjust number size */
+     }
+      .gold-icon {
+          font-size: 1em;
+      }
+
+     .step-content {
+         text-align: left; /* Ensure content is left-aligned */
+     }
+
+     .step-title {
+         font-size: 1.3em; /* Adjust size */
+     }
+      .step-description {
+         font-size: 0.95em;
+     }
+
+     .expert-card {
+         padding: 25px; /* Adjust padding */
+     }
+      .expert-icon {
+         font-size: 2.5em; /* Adjust size */
+      }
+      .expert-name {
+         font-size: 1.6em; /* Adjust size */
+      }
+      .expert-tagline {
+         font-size: 0.9em;
+      }
+      .expert-details {
+          padding-top: 15px;
+          margin-bottom: 15px;
+      }
+      .expert-details p {
+          font-size: 0.95em;
+      }
+      .expert-footer {
+          padding-top: 15px;
+          flex-direction: column; /* Stack price and button */
+          align-items: center;
+          gap: 15px;
+      }
+       .expert-price {
+           font-size: 1.3em;
+       }
+
+      .footer-top {
+           gap: 30px;
+      }
+       .footer-cta, .footer-nav-links {
+           max-width: 95%;
+       }
+      .footer-nav-links {
+          flex-direction: column; /* Stack link columns */
+           align-items: center;
+           gap: 30px;
+      }
+       .footer-links-group {
+            text-align: center; /* Center link group titles and lists */
+            min-width: unset;
+       }
+       .footer-links-group ul {
+            padding: 0;
+       }
+}
+
+@media (max-width: 480px) {
+     .logo-name {
+         font-size: 1.8em;
+     }
+     .nav a {
+         font-size: 13px;
+         letter-spacing: 0.5px;
+     }
+     .hero-headline {
+        font-size: 2em;
+     }
+     .hero-description {
+        font-size: 1em;
+     }
+     .btn {
+         padding: 10px 20px;
+         font-size: 14px;
+     }
+     .section-title {
+         font-size: 1.8em;
+         margin-bottom: 30px;
+     }
+     .service-card {
+          padding: 25px;
+     }
+      .service-icon {
+          font-size: 3em;
+          margin-bottom: 15px;
+      }
+      .service-card-title {
+           font-size: 1.5em;
+      }
+       .service-card-description {
+           font-size: 1em;
+      }
+
+      .step-card {
+         flex-direction: column; /* Stack number/icon and content again */
+         align-items: center;
+         text-align: center;
+      }
+       .step-icon {
+          width: 70px;
+          height: 70px;
+          margin-bottom: 15px;
+          margin-right: 0;
+       }
+       .step-number-dancing {
+           font-size: 2.8em;
+       }
+        .gold-icon {
+           font-size: 0.9em;
+       }
+       .step-title {
+           font-size: 1.2em;
+       }
+       .step-description {
+           font-size: 0.9em;
+       }
+
+      .expert-card {
+          padding: 20px;
+      }
+       .expert-icon {
+          font-size: 2em;
+          margin-right: 10px;
+       }
+       .expert-name {
+          font-size: 1.4em;
+       }
+        .expert-rating {
+            font-size: 0.8em;
+        }
+        .expert-details {
+            padding-top: 10px;
+            margin-bottom: 10px;
+        }
+        .expert-details p {
+            font-size: 0.9em;
+        }
+        .expert-footer {
+            padding-top: 10px;
+            gap: 10px;
+        }
+        .expert-price {
+            font-size: 1.2em;
+        }
+        .expert-price strong {
+            font-size: 1em;
+        }
+         .footer-signup-form {
+             flex-direction: column; /* Stack input and button */
+             gap: 15px;
+         }
+         .footer-email-input, .footer-signup-form .btn {
+             width: 100%; /* Full width for stacked items */
+             max-width: 300px; /* Cap width for aesthetics */
+         }
+          .footer-signup-form .btn {
+               max-width: unset; /* Button can be full width up to container */
+          }
+}
